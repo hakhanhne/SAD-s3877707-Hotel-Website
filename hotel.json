@@ -1,0 +1,87 @@
+{
+  "data":
+  {
+    "name":"The Princess of Arena Cam Ranh Home",
+    "adddress":"Toà Sea - Khu nghỉ The Arena, Miếu Ông, 26H7+WRQ, Nguyễn Tất Thành, Cam Hải Đông, Tp. Cam Ranh, Khánh Hòa 57000",
+    "phone":"090 335 86 23",
+    "coordination": 
+    {
+      "lat":10.0298392, 
+      "long":109.2146164
+    },
+    "owner":"An Gia Land",
+    "room_list": 
+    [
+      {
+        "name":"single",
+        "size":50,
+        "rate":100,
+        "number_of_room":2
+      },
+      {
+        "name":"double",
+        "size":50,
+        "rate":100,
+        "number_of_room":2
+      },
+      {
+        "name":"family",
+        "size":50,
+        "rate":100,
+        "number_of_room":2
+      },
+      {
+        "name":"sea-view",
+        "size":50,
+        "rate":100,
+        "number_of_room":2
+      },
+      {
+        "name":"park-view",
+        "size":50,
+        "rate":100,
+        "number_of_room":2
+      }
+    ],
+    "rules":
+    [
+      {
+        "rule":"Pets",
+        "description":"Pets are not allowed"
+      },
+      {
+        "rule":"Cash only",
+        "description":"This property only accepts cash payments"
+      },
+      {
+        "rule":"Smoking",
+        "description":"Smoking is not allowed"
+      },
+      {
+        "rule":"Parties",
+        "description":"Parties/events are not allowed"
+      },
+      {
+        "rule":"Cancellation/prepayment",
+        "description":"Cancellation and prepayment policies vary according to apartment type. Please enter the dates of your stay and check the conditions of your required room"
+      },
+      {
+        "rule":"No age restriction",
+        "description":"There is no age requirement for check-in"
+      }
+
+    ],
+    "checkin": "14:00 - 22:00",
+    "checkout": "08:00 - 12:00",
+    "photos":
+    [
+      "https://t-cf.bstatic.com/xdata/images/hotel/max500/397679476.jpg?k=6a33e395927c765e4a0c24f0144fc5f82d25094c84e118b8d820eed0140058e2&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679601.jpg?k=8d420d6fcd15cae1e327c759b8aa44e7a893f66db176e53983c3a6f83845d82c&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/396662291.jpg?k=3d4414ab19b4813a46fd246b4b64f34d0b0a2e7d24dd4ad049aab90c8109c3b8&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/395694401.jpg?k=bfb8a6a4e433232f2c0d5dd0233cb38bf4eae280d211a4d266a487384d674e20&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397680322.jpg?k=91bf91ead94a551aac97e80652e739f38a9b95326b79adb1ef4132c3cc01e8e2&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679992.jpg?k=26ab0eec59f1aa4acf25856b370969b6a2400f56368661f5b901392d65b99247&o=&hp=1"
+    ],
+    "utilities":["AC","Terrace","Pool","Gym","Restaurant","Beach","Parking"]
+  }
+}

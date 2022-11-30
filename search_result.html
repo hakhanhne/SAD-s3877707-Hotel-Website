@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Princess of Arena Cam Ranh Home</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+  />
+  <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <style>
+    body * {
+      font-family: "Poppins", sans-serif;
+    }
+    
+    body {
+      margin: 0px;
+    }
+    
+    header {
+      height: 50px;
+      background-color: rgb(163, 69, 69);
+      /* color: white; */
+      font-weight: 600;
+      font-size: larger;
+      padding: 10px 25px 10px 25px;
+    }
+
+    header * {
+      color: white;
+    }
+    .main-body{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px;
+      /* align-items: center;
+      justify-items: center; */
+    }
+    .flex-row{
+      display: flex;
+      gap: 10px;
+    }
+    .flex-col{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .space-between {
+      justify-content: space-between;
+    }
+
+    .justify-left {
+      justify-content: left;
+    }
+
+    #search-area{
+      background-color: #febb02;
+      padding: 20px;
+      height: fit-content;
+    }
+
+    #search-area-content {
+      gap: 18px;
+    }
+
+    #search-form div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    #search-area-content * {
+      font-size: 14px;
+    }
+
+    .btn {
+      border: solid 1.5px transparent;
+      border-radius: 3px;
+      align-items: center;
+      height: 35px;
+      justify-content: center;
+    }
+
+    .btn:hover{
+      cursor: pointer;
+    }
+
+    .btn:active{
+      opacity: 85%;
+    }
+
+    .btn-white-text {
+      border-color: white;
+      color: white;
+    }
+
+    .btn-red {
+      background-color: rgb(163, 69, 69);
+      color: white;
+    }
+
+    .btn-transparent{
+      background-color: transparent;
+    }
+
+    .table-w-border, .table-w-border tr, .table-w-border td, .table-w-border th {
+      border: 1px solid;
+      border-collapse: collapse;
+    }
+
+    .table-no-border, .table-no-border tr, .table-no-border td, .table-no-border th {
+      border: none;
+    }
+
+    th, td {
+      padding: 3px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .modal {
+      width: 75%;
+      background-color: antiquewhite;
+      padding: 1em 0em;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #left-col {
+      min-width: 180px;
+      width: 25%;
+    }
+
+    #right-col {
+      width: 75%;
+    }
+
+    #highlight-photo, #search-area{
+      height: 65%;
+    }
+
+    #normal-photo, #map{
+      height: 35%;
+    }
+
+    #normal-photo > img{
+      width: 24%;
+    }
+
+    
+  </style>
+
+</head>
+<body>
+  <header>
+    <div class="flex-row space-between">
+      <div>The Princess of Arena Cam Ranh Home</div>
+      <button class="btn btn-white-text btn-transparent">Sign In</button>
+    </div>
+  </header>
+  <main class="main-body">
+    <div class="flex-row justify-left" id="search-map-photo" style="height:500px;">
+      <div class="flex-col" id="left-col">
+        <div id="search-area">
+          <div class="flex-col" id="search-area-content">
+            <div style="font-weight: 600; font-size: 25px;">Search</div>
+            <div class="flex-col" id="search-form">
+              <div>
+                <label for="room-type">Room Type</label>
+                <select class="input_box" id="room-type" name="room-type">
+                    <option id="all" value="all">All</option>
+                    <option id="single" value="single">Single</option>
+                    <option id="double" value="double">Double</option>
+                    <option id="family" value="family">Family</option>
+                    <option id="sea-view" value="sea-view">Sea View</option>
+                    <option id="park-view" value="park-view">Park View</option>
+                </select>
+              </div>
+  
+              <div>
+                <label for="checkin">Check-in Date</label>
+                <input class="input_box" type="date" id="checkin" name="checkin"/>
+              </div>
+  
+              <div>
+                <label for="checkin">Check-out Date</label>
+                <input class="input_box" type="date" id="checkout" name="checkout"/>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-red" id="btn-search">Search</button>
+          </div>
+        </div>
+
+        <div id="map" style="width: 100%; height: 40%;">
+          <div class="mapouter" style="width: 100%; height: 100%;">
+            <div class="gmap_canvas" style="width: 100%; height: 100%;">
+              <iframe style="width: 100%; height: 100%;" id="gmap_canvas" src="https://maps.google.com/maps?q=the%20princess%20of%20Arena%20Cam%20Ranh%20Home&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              <a href="https://www.online-timer.net"></a>
+              <br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
+              <a href="https://www.embedgooglemap.net"></a>
+              <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-col" id="right-col">
+        <div class="flex-row" id="highlight-photo">
+          <img id="photo0" style="width:60%;">
+          <div class="flex-col" style="width:40%;">
+            <img id="photo1" style="height:48%;">
+            <img id="photo2" style="height:48%;">
+          </div>
+        </div>
+        <div class="flex-row" id="normal-photo">
+          <img id="photo3">
+          <img id="photo4">
+          <img id="photo5">
+          <img id="photo6">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let apiUrl = "https://api.npoint.io/c151f40011101fa9253f"
+    let hotelData = null
+    let photo_area = document.querySelector("#right-col")
+    let btn_search = document.querySelector("#btn-search")
+    let room_type = document.querySelector("#room-type")
+    let checkin = document.querySelector("#checkin")
+    let checkout = document.querySelector("#checkout")
+
+
+    async function fetchData(url) {
+      try {
+        let res = await fetch(url);
+        const json = await res.json();
+        const data = json.data;
+        return data;
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    async function getHotelData(url) {
+      hotelData = await fetchData(url)
+    }
+
+    function search() {
+
+    }
+
+    async function main() {
+      await getHotelData(apiUrl)
+
+      let photos = hotelData.photos
+      for (let i=0; i<7; i++) {
+        document.querySelector(`#photo${i}`).src = photos[i]
+
+      }
+
+    } 
+
+    main()
+  </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>    =
+</body>

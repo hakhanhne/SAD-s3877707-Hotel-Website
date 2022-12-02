@@ -313,8 +313,6 @@
                       <option id="single" value="single">Single</option>
                       <option id="double" value="double">Double</option>
                       <option id="family" value="family">Family</option>
-                      <option id="sea-view" value="sea-view">Sea View</option>
-                      <option id="park-view" value="park-view">Park View</option>
                   </select>
                 </div>
     
@@ -510,16 +508,7 @@
     }
 
     async function getHotelData() {
-      // let res = await fetch(dataVerURL);
-      // dataVer = await res.json();
-      // if (localStorage.getItem('dataVer') != dataVer) {
         hotelData = await fetchData(dataURL)
-      //   localStorage.setItem('hotelData', JSON.stringify(hotelData))
-      //   localStorage.setItem('dataVer', dataVer)
-      // }
-      // else {
-      //   hotelData = JSON.parse(localStorage.getItem('hotelData'))
-      // }
     }
 
     function search() {

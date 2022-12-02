@@ -95,7 +95,7 @@
       background-color: rgb(248, 223, 223);
       padding: 20px;
     }
-    input {
+    input:not([type='checkbox']), select {
       padding: 5px 3px;
       width: 180px;
     }
@@ -243,9 +243,10 @@
     
     .subtitle {font-size: 25px;}
     
+    .modal label {font-size: 14px;}
 
     @media screen and (max-width: 40em) { 
-      input{width: 100%;}
+      input:not([type='checkbox']), select {width: 100%;}
       body * {font-size: 12px;}
       .title {font-size: 25px;}
       .subtitle {font-size: 20px;}
@@ -255,9 +256,7 @@
       #hotel-info-form-main > div {flex-direction: column;}
       .right-header{flex-direction: column-reverse; gap: 10px;}
       table{width: 100%;}
-      .flex-row-to-col {
-        flex-direction: column;
-      }
+      .flex-row-to-col {flex-direction: column;}
     }
     
     
@@ -356,6 +355,7 @@
 
     <section class="align-center" id="section-room">
       <div class="title">Room Information</div>
+      <button id="btn-add-room" data-bs-toggle="modal" data-bs-target="#modal-edit-room" onclick=openModal()>Add room</button>
       <table class="table-w-border" id="table-room">
       <thead>
         <th>Edit</th>
@@ -365,9 +365,7 @@
         <th>Capacity</th>
         <th>Total room</th>
       </thead>
-      <tbody>
-
-      </tbody>
+      <tbody></tbody>
     </table>
     </section>
 
@@ -377,24 +375,111 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal-edit-room-label">Select Utilities</h5>
+          <h5 class="modal-title subtitle" id="modal-edit-room-label">Edit Room</h5>
           <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" style="gap: 1.5rem;">
-            <div id="utilities-select"></div>
+          <form class="form flex-col align-center" id="form-edit-room">
+            <div class="width100 flex-row-to-col space-between">
+              <div class="flex-col">
+                <div class="flex-col">
+                  <label>Room type</label>
+                  <select class="input_box" id="modal-type" name="modal-type">
+                    <option id="single" value="single">Single</option>
+                    <option id="double" value="double">Double</option>
+                    <option id="family" value="family">Family</option>
+                  </select>
+                </div> 
+                <div class="flex-col">
+                  <label>Room name</label>
+                  <input required type="text" id="modal-name" name="modal-name"/>
+                </div> 
+                <div class="flex-col">
+                  <label>Size</label>
+                  <input type="number" id="modal-size" name="modal-size"/>
+                </div> 
+                <div class="flex-col">
+                  <label>Capacity</label>
+                  <input type="number" id="modal-capacity" name="modal-capacity"/>
+                </div> 
+
+                <div class="flex-col">
+                  <label>Total room</label>
+                  <input required type="number" id="modal-total-room" name="modal-total-room"/>
+                </div> 
+                <div class="flex-col">
+                  <label>Stock</label>
+                  <input disabled type="number" id="modal-stock" name="modal-stock"/>
+                </div> 
+                <div class="flex-col">
+                  <label>Normal rate</label>
+                  <input required type="number" id="modal-rate" name="modal-rate"/>
+                </div>      
+              </div>
+
+              <div class="flex-col">
+                <div class="flex-col">
+                  <label>Utilities</label>
+                  <div id="utilities-select"></div>
+                </div> 
+  
+                <div class="flex-col">
+                  <div class="flex-row align-center">
+                    <label>Beds</label>
+                    <button id="btn-add-bed">Add new</button>
+                  </div>
+                  <table class="table-w-border" id="table-bed">
+                    <thead>
+                      <th>Remove</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div> 
+
+              </div>
+
+            </div> 
+            <div class="flex-col">
+              <div class="flex-row align-center">
+                <label>Special Rate</label>
+                <button id="btn-add-s-rate">Add new</button>
+              </div>
+              <table class="table-w-border" id="table-special-rate">
+                <thead>
+                  <th>Remove</th>
+                  <th>Rate</th>
+                  <th>Start</th>
+                  <th>End</th>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div> 
+
+            <div>
+              <input id="btn-save-room" class="btn btn-red" type="submit" value="Save">
+            </div>  
+          </form>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+  <!-- end of modal edit room -->
 
-  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <script>
     let hotelData = null
+    let room_list = null
+    let room_chosen = null
     let rule_count = 0;
     let util_count = 0;
+    let special_rate_count = 0;
+    let bed_count=0
     const table_room = document.querySelector("#table-room tbody");
     const dataURL = "https://api.npoint.io/19d2682dd52d37f2f077/data"
     const dataVerURL = "https://api.npoint.io/19d2682dd52d37f2f077/version"
@@ -409,12 +494,128 @@
     const btn_confirm = document.querySelector("#btn-confirm")
     const lat = document.querySelector("#lat")
     const long = document.querySelector("#long")
+    const utilities_select = document.querySelector("#utilities-select")
+
+    const m_type = document.querySelector("#modal-type")
+    const m_name = document.querySelector("#modal-name")
+    const m_capacity = document.querySelector("#modal-capacity")
+    const m_total = document.querySelector("#modal-total-room")
+    const m_size = document.querySelector("#modal-size")
+    const m_rate = document.querySelector("#modal-rate")
+    const m_s_rate = document.querySelector("#modal-special-rate")
+    const m_stock = document.querySelector("#modal-stock")
+    const table_s_rate = document.querySelector("#table-special-rate tbody")
+    const table_bed = document.querySelector("#table-bed tbody")
+    const btn_save_room = document.querySelector("#btn-save-room")
+
+    btn_save_room.addEventListener("click", (e) => {
+      e.preventDefault()
+      saveRoom()
+    })
+
+    document.querySelector("#btn-add-s-rate").addEventListener("click", (e) => {
+      e.preventDefault()
+      addSpecialRate()
+    })
+
+    document.querySelector("#btn-add-bed").addEventListener("click", (e) => {
+      e.preventDefault()
+      addBed()
+    })
+    
+    $( "#modal-edit-room" ).on('shown.bs.modal', function(){
+      table_s_rate.innerHTML = ``
+      utilities_select.innerHTML = ``
+      if (room_chosen != null) {
+        m_stock.disabled = true
+        m_name.value = room_chosen.name
+        m_capacity.value = room_chosen.capacity
+        m_rate.value = room_chosen.rate
+        m_total.value = room_chosen.total_room
+        m_stock.value = room_chosen.stock
+        m_size.value = room_chosen.size
+        document.querySelector(`#modal-type #${room_chosen.type}`).selected = true
+        let chosen_util = room_chosen.utilities
+        hotelData.utilities.forEach((u,i) => {
+          u.detail.forEach(d => {
+            if (chosen_util.includes(d)) {
+              utilities_select.innerHTML += 
+              `<div class="flex-row"><input type="checkbox" checked id="${d}" value="${d}"/>${d}</div>`
+            }
+            else {
+              utilities_select.innerHTML += 
+              `<div class="flex-row"><input type="checkbox" id="${d}" value="${d}"/>${d}</div>`
+            }
+          })
+        });
+
+        let s_rates = room_chosen.special_rate
+        if (s_rates.length > 0 ) {
+          let html = ``
+          s_rates.forEach((s_rate,i) => {
+            special_rate_count++;
+            let id = `s-rate${special_rate_count}`
+            html += 
+            `
+            <tr id="${id}">
+              <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+              <td><input class="rate input_box" type="number" value="${s_rate.rate}"/></td>
+              <td><input class="start input_box" type="date" value="${s_rate.date_start}"/></td>
+              <td><input class="end input_box" type="date" value="${s_rate.date_end}"/></td>
+            </tr>
+            `
+          })
+          table_s_rate.innerHTML = html
+        }
+        else {
+          addSpecialRate()
+        }
+
+        if (room_chosen.beds.length > 0 ) {
+          let bed_html = ``
+          room_chosen.beds.forEach((b,i) => {
+            bed_count++;
+            let id = `bed${bed_count}`
+            bed_html +=
+            `
+            <tr id="${id}">
+              <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+              <td><input required class="bed-type input_box" type="string" value="${b.bed_type}"/></td>
+              <td><input required class="bed-amount input_box" type="number" value="${b.amount}" /></td>
+            </tr>
+            `
+          })
+          table_bed.innerHTML = bed_html
+        }
+        else {
+          addBed()
+        }
+      }
+      else {
+        m_stock.disabled = false
+        addSpecialRate()
+        addBed()
+        m_name.value = ""
+        m_capacity.value = ""
+        m_rate.value = ""
+        m_total.value = ""
+        m_stock.value = ""
+        m_size.value = ""
+        document.querySelector("#single").selected = true
+        hotelData.utilities.forEach((u,i) => {
+          u.detail.forEach(d => {
+            utilities_select.innerHTML += 
+            `<div class="flex-row"><input type="checkbox" id="${d}" value="${d}"/>${d}</div>`
+          })
+        });
+      }
+
+    });
 
 
-    btn_confirm.addEventListener("click", async () => {await saveChange()})
+    btn_confirm.addEventListener("click", async () => {await saveHotelData()})
 
-    let signin_state = localStorage.getItem("state")
-    if (signin_state != "admin-signed-in")
+    if (localStorage.getItem("state") != "admin-signed-in")
       location.replace("admin_signin.html")
 
     async function fetchData(url) {
@@ -453,6 +654,33 @@
           <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
           <td><input class="util input_box" type="text"/></td>
           <td><input class="util-detail input_box" type="text"/></td>
+      </tr>
+      `
+    }
+
+    function addSpecialRate() {
+      special_rate_count++
+      let id = `s-rate${special_rate_count}`
+      table_s_rate.innerHTML +=
+      `
+      <tr id="${id}">
+        <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+        <td><input required class="rate input_box" type="number"/></td>
+        <td><input required class="tart input_box" type="date" /></td>
+        <td><input required class="end input_box" type="date"/></td>
+      </tr>
+      `
+    }
+
+    function addBed() {
+      bed_count++
+      let id = `bed${bed_count}`
+      table_bed.innerHTML +=
+      `
+      <tr id="${id}">
+        <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+        <td><input required class="bed-type input_box" type="number"/></td>
+        <td><input required class="bed-amount input_box" type="date" /></td>
       </tr>
       `
     }
@@ -510,7 +738,50 @@
       return result
     }
 
-    async function saveChange() {
+    function getSpecialRate() {
+      let s_rates = document.querySelectorAll("#table-special-rate tbody tr")
+      let result = []
+      console.log(s_rates)
+      s_rates.forEach(r => {
+        let rate = document.querySelector(`#${r.id} .rate`).value
+        let start = document.querySelector(`#${r.id} .start`).value
+        let end = document.querySelector(`#${r.id} .end`).value
+
+        if (rate != "" && start != "" && end != "")
+          result.push({"rate":rate, "start":start, "end":end})
+      })
+      console.log(result)
+      return result
+
+    }
+
+
+    async function saveRoom() {
+      let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+      let selected_util = []
+      let total = checkboxes.length
+      for (let i = 0; i < total; i++) {
+        selected_util.push(checkboxes[i].value)
+      }
+
+
+      let temp = {
+        "type":m_type.value,
+        "name":m_name.value,
+        "rate":m_rate.value,
+        "special_rate":getSpecialRate(),
+        "total_room":m_total.value,
+        "stock":m_stock.value,
+        "size":m_size.value,
+        "capacity":m_capacity.value,
+        "utilities":selected_util,
+        "beds":1
+      }
+      console.log(temp)
+    }
+
+
+    async function saveHotelData() {
       msg.innerHTML = ""
       phone.value = phone.value.replace(/\s+/g, '');
       if (name.value == "" || owner.value =="" || phone.value=="") {
@@ -572,6 +843,20 @@
       table_utility.innerHTML += html
     }
 
+    function openModal(roomId) {
+      special_rate_count=0;
+      if (roomId != null) {
+        let size = room_list.length
+
+        for (let i=0; i<size; i++) {
+          if (Number(roomId) == room_list[i].id) {
+            room_chosen = room_list[i]
+          }
+        }
+      }
+      else room_chosen = null
+
+    }
 
 
     function displayHotelData() {
@@ -585,13 +870,12 @@
     }
 
     function displayRoomList() {
-      let room_list = hotelData.room_list
       let html=``
       room_list.forEach(room => {
         html += 
         `
         <tr id="row${room.id}">
-          <td class="text-center clickable" onclick="rowClicked(${room.id})"><i class = "fa fa-edit"></i></td>
+          <td class="text-center clickable" data-bs-toggle="modal" data-bs-target="#modal-edit-room" onclick=openModal(${room.id})><i class = "fa fa-edit"></i></td>
           <td>${room.name}</td>
           <td>${room.type}</td>
           <td>${room.rate}</td>
@@ -605,15 +889,18 @@
 
     async function main() {
       await getHotelData()
+      room_list = hotelData.room_list
       displayHotelData()
       displayRoomList()
       
     }
 
     main()
+  
 
   </script>
 
+<script type="text/javascript" src="signinState.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
 </body>

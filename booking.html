@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Sign In</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+      href="https://fonts.googleapis.com/css2?family=Poppins"
+      rel="stylesheet"
+  />
+  <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <!-- boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <style>
+    .flex-row{
+      display: flex;
+      gap: 7px;
+    }
+
+    .flex-col{
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .align-center {align-items: center;}
+    #table-room-info thead {
+      background-color: rgb(163, 69, 69);
+      height: 40px;
+      color: white;
+    }
+    #table-room-info td{text-align: center;}
+    
+    #table-room-info td:first-child {
+     max-width: fit-content;
+     text-align: left;
+     display: flex;
+     flex-direction: column;
+     border: none;
+    }
+    .util.flex-row, #utility-content {
+      flex-wrap: wrap;
+    }
+
+    .space-between {
+      justify-content: space-between;
+    }
+
+    header {
+      background-color: rgb(163, 69, 69);
+      font-weight: 600;
+      padding: 10px 25px 10px 25px;
+
+    }
+
+    header * {
+      color: white;
+    }
+
+    .header-title {font-size: 22px;}
+
+    body * {
+      font-family: "Poppins", sans-serif;
+      font-size: 13px;
+    }
+    
+    body {
+      margin: 0px;
+    }
+
+    .main-body{
+      gap: 40px;
+      width: 90%;
+      align-self: center;
+    }
+
+    .main-body > * {width: 100%;}
+    
+    .main-body, .page-content, #booking-form, #booking-form-main{
+      align-items: center;
+      justify-items: center;
+    }
+
+    .page-content {gap: 40px;}
+    .page-content > div {
+      width: 100%;
+    }
+
+    #booking-form {
+      gap: 25px;
+    }
+
+    #booking-form-main {
+      gap: 25px;
+    }
+
+    #booking-form-main > div {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+    #btn-confirm {width:fit-content;}
+
+    input {
+      padding: 5px 0px;
+      width: 180px;
+    }
+
+    .label-input {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .table-w-border, .table-w-border tr, .table-w-border td, .table-w-border th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    
+    th {text-align: center;}
+    th, td {
+      padding: 3px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .bold{font-weight: 600;}
+
+
+    .page-title {
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 40px;
+      font-weight:500;
+      word-wrap: break-word;
+      text-align: center;
+    }
+
+    .btn {
+      border: solid 1.5px transparent;
+      border-radius: 3px;
+      align-items: center;
+      justify-content: center;
+      height: fit-content;
+    }
+
+    .btn:hover{
+      cursor: pointer;
+    }
+
+    .btn:active{
+      opacity: 85%;
+    }
+
+    .btn-white-text {
+      border-color: white;
+      color: white;
+    }
+
+    .btn-transparent{
+      background-color: transparent;
+    }
+
+    .btn-red {
+      background-color: rgb(163, 69, 69);
+      color: white;
+    }
+    .originalPrice {
+      text-decoration: line-through;
+    }
+
+    @media screen and (max-width: 40em) { 
+      body * {font-size: 12px;}
+      .title {font-size: 25px;}
+      .subtitle {font-size: 20px;}
+      .header-title {font-size: 17px;}
+      .page-title{font-size: 25px;}
+      #btn-confirm {width:max-content;}
+      #booking-form-main > div {flex-direction: column;}
+    }
+
+  </style>
+</head>
+<body class="flex-col">
+  <header>
+    <div class="flex-row space-between">
+      <div class="header-title">The Princess of Arena Cam Ranh Home</div>
+      <div class="flex-row align-center">
+        <a href="index.html">Home</a>
+        |
+        <a href="hotel_manage.html">Admin</a>
+      </div>
+    </div>
+  </header>
+  <main class="main-body flex-col">
+    <div class="page-title">Booking Confirmation</div>
+    <div class="page-content flex-col">
+      <div class="flex-col" id="booking-form">
+        <div class="flex-col" id="booking-form-main">
+          <div>
+            <div class="label-input">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Full Name"/>
+            </div>
+            <div class="label-input">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Email"/>
+            </div>
+            <div class="label-input">
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" placeholder="Phone"/>
+            </div>
+          </div>
+          
+          <div>
+            <div class="label-input">
+              <label for="guest">Total guest</label>
+              <input type="text" id="guest" disabled/>
+            </div>
+            <div class="label-input">
+              <label for="checkin">Check-in Date</label>
+              <input type="date" id="checkin" placeholder="Check-in Date" disabled/>
+            </div>
+            <div class="label-input">
+              <label for="checkout">Check-out Date</label>
+              <input type="date" id="checkout" placeholder="Check-out Date" disabled/>
+            </div>
+          </div>
+        </div>
+        <div class="flex-col align-center">
+          <button type="submit" class="btn btn-red btn-sm" id="btn-confirm">Confirm</button>
+          <div id="msg"></div>
+        </div>
+      </div>
+      
+
+      <div id="room-info">
+        <table class="table-w-border" id="table-room-info" width="100%">
+          <thead>
+            <th >Apartment Type</th>
+            <th style="width:10%">Capacity</th>
+            <th style="width:10%">Price/room</th>
+            <th style="width:10%">Quantity</th>
+            <th>Reserve</th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    
+  </main>
+
+  <script>
+    let bookingInfo = localStorage.getItem("bookingInfo")
+    bookingInfo = JSON.parse(bookingInfo)
+    console.log(bookingInfo)
+    const checkin = document.querySelector("#checkin")
+    const checkout = document.querySelector("#checkout")
+    const name = document.querySelector("#name")
+    const email = document.querySelector("#email")
+    const guest = document.querySelector("#guest")
+    const phone = document.querySelector("#phone")
+    const btn_confirm = document.querySelector("#btn-confirm")
+    const msg =  document.querySelector("#msg");
+
+
+    btn_confirm.addEventListener("click", () => {
+      msg.innerHTML = ""
+      if (name.value == "" || email.value == "" || phone.value=="")  {
+        msg.innerHTML = "Please fill in the information"
+      }
+      else {
+        let confirmBooking = {
+          "name":document.querySelector("#name").value,
+          "email":document.querySelector("#email").value,
+          "phone":document.querySelector("#phone").value,
+          "checkin":document.querySelector("#checkin").value,
+          "checkout":document.querySelector("#checkout").value,
+          "guest":Number(document.querySelector("#guest").value)
+        }
+        
+        let bookingList = localStorage.getItem("bookingList")
+        bookingList = JSON.parse(bookingList)
+        if (bookingList==null || bookingList.length==0) bookingList = []
+        bookingList.push(confirmBooking)
+
+        localStorage.setItem("bookingList", JSON.stringify(bookingList))
+        console.log("booked")
+        console.log( localStorage.getItem("bookingList"))
+      }
+      
+
+    })
+
+    const table_room_info = document.querySelector("#table-room-info tbody")
+
+    function displayBookingInfo() {
+      checkin.value = localStorage.getItem("checkin")
+      checkout.value = localStorage.getItem("checkout")
+      guest.value = bookingInfo.guest 
+      let room = bookingInfo.room
+      
+      let beds_html = ``
+      let utilities_html =``
+
+      room.beds.forEach(bed => {
+        beds_html += `<div>${bed.amount} ${bed.bed_type} bed</div>`
+      })
+
+      room.utilities.forEach(util => {
+          utilities_html += `<div class="flex-row"><i class="fa fa-check"></i>${util}</div>`
+
+      })
+
+      table_room_info.innerHTML += 
+      `
+      <tr>
+        <td>
+          <div>${room.name}</div>
+          <div class="bold">Bed:</div>
+          <div class="bed">${beds_html}</div>
+          <div class="bold">Utilities:</div>
+          <div class="util flex-row" style:"width: 1  00px; flex-wrap: wrap;">${utilities_html}</div>
+        </td>
+        <td>${room.capacity}</td>
+        <td id="roomPrice">
+          <div class="originalPrice">$${bookingInfo.originalPrice}</div>
+          <div>$<span class="roomPrice">${bookingInfo.roomPrice}</span></div>
+        </td>
+        <td>
+          <div>${bookingInfo.quantity}</div>
+        </td>
+        <td>
+          <div class="reserve">
+              <div>Total price:</div>
+              <div class="totalPrice">${bookingInfo.roomPrice*bookingInfo.quantity}</div>
+            </div>
+        </td>
+      </tr>
+      `
+    }
+
+
+    
+    function main() {
+      displayBookingInfo()
+    }
+
+    main()
+    
+  </script>
+
+</body>

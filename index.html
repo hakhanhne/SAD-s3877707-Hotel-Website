@@ -6,21 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The Princess of Arena Cam Ranh Home</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
-  />
-  <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Poppins">
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Merienda">
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Short Stack">
+
+  
+  
+  <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <!-- boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
   <style>
     .flex-row{
       display: flex;
-      gap: 10px;
+      gap: 7px;
     }
 
     .flex-col{
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 7px;
     }
 
     body * {
@@ -33,7 +44,6 @@
     }
     
     header {
-      height: 50px;
       background-color: rgb(163, 69, 69);
       font-weight: 600;
       padding: 10px 25px 10px 25px;
@@ -42,9 +52,27 @@
     header * {
       color: white;
     }
+
+    .header-title {
+      font-family: 'Merienda';
+      font-size: 22px;
+    }
+
+    .title{
+      font-family: 'Short Stack';
+      font-weight: 600;
+      font-size: 30px;
+      text-align: center;
+      color: rgb(163, 69, 69);
+    }
+
+    
+    .subtitle {font-size: 25px;}
+
     .main-body{
-      gap: 40px;
-      margin: 3% 4%;
+      gap: 40px !important;
+      width: 90%;
+      align-self: center;
     }
 
     .main-body section {
@@ -57,9 +85,15 @@
       justify-content: space-between;
     }
 
+    .space-around {
+      justify-content: space-around;
+    }
+
     .justify-left {
       justify-content: left;
     }
+
+    .align-center {align-items: center;}
 
     #search-area{
       background-color: #febb02;
@@ -67,11 +101,9 @@
       height: fit-content;
     }
 
-    #search-area-content {
-      gap: 18px;
-    }
+    #search-area-content {gap: 18px;}
 
-    #search-form div {
+    .label-input {
       display: flex;
       flex-direction: column;
       gap: 5px;
@@ -81,8 +113,8 @@
       border: solid 1.5px transparent;
       border-radius: 3px;
       align-items: center;
-      height: 35px;
       justify-content: center;
+      height: fit-content;
     }
 
     .btn:hover{
@@ -98,17 +130,17 @@
       color: white;
     }
 
+    .btn-transparent{
+      background-color: transparent;
+    }
+
     .btn-red {
       background-color: rgb(163, 69, 69);
       color: white;
     }
 
-    .btn-transparent{
-      background-color: transparent;
-    }
-
     .table-w-border, .table-w-border tr, .table-w-border td, .table-w-border th {
-      border: 1px solid;
+      border: 1px solid black;
       border-collapse: collapse;
     }
 
@@ -116,37 +148,24 @@
       border: none;
     }
 
-    th, td {
-      padding: 3px;
-    }
+    th {text-align: center;}
+
+    th, td {padding: 5px 3px;}
 
     .text-center {
       text-align: center;
     }
 
-    .modal {
-      width: 75%;
-      background-color: antiquewhite;
-      padding: 1em 0em;
-    }
-
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-
     #left-col {
-      min-width: 20%;
-      max-width: 25%;
+      width: 25%;
     }
 
     #right-col {
-      min-width: 60%;
+      height: 500px;
+      max-width: 70%;
     }
 
-    #highlight-photo, #search-area{
+    #highlight-photo{
       height: 65%;
     }
 
@@ -158,51 +177,139 @@
       width: 24%;
     }
 
-    .section-title{
-      font-weight: 600;
-      font-size: 30px;
-      /* color: rgb(163, 69, 69); */
-    }
-
     .section-colored {
       background-color: rgb(248, 223, 223);
       padding: 20px;
-      border-radius: 5px;
     }
-    .rule-bold{
-      font-weight: 500;
+
+    #table-rule td:first-child {
+      font-weight: 600;
+    }
+
+    #table-result td:first-child {
+     max-width: fit-content;
+     text-align: left;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     border: none;
     }
 
     #table-rule {
       border-spacing: 10px 15px;
     }
 
+    .bold{font-weight: 600;}
 
+    .util-title{
+      font-weight: 600;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .util-col {gap: 20px;}
+
+    .util-col div {gap: 7px;}
+
+    img:hover{opacity: .7;}
+
+    table thead {
+      background-color: rgb(163, 69, 69);
+      height: 40px;
+      color: white;
+    }
+
+    #table-result td{text-align: center;}
+
+    .util.flex-row, #utility-content {
+      flex-wrap: wrap;
+    }
+
+    .rounded-border{
+      border-radius: 5px;
+      border-color: transparent;
+    }
+
+    img {
+      border-radius: 5px;
+      border-color: transparent;
+    }
+
+    #explore-content {
+      display: flex;
+      flex-direction: row;
+    }
+
+    table {
+      overflow-x: auto;
+    }
+    
+    .matched-util {color: rgb(219, 24, 24);}
+
+    #btn-select-util {
+      border: 1px solid;
+      font-size: inherit;
+      background-color: white;
+      padding: 2px;
+      border-color: rgb(133, 133, 133);
+    }
+
+    .originalPrice {
+      text-decoration: line-through;
+    }
+
+    @media screen and (max-width: 40em) { 
+      body * {font-size: 12px;}
+      .title {font-size: 25px;}
+      .subtitle {font-size: 20px;}
+      .header-title {font-size: 17px;}
+
+      #explore-content {
+        flex-direction: column;
+        gap: 7px
+      }
+
+      #left-col, #right-col {
+        width:100%;
+        max-width:100%
+      }
+      
+      #utility-content {
+        justify-content: left;
+      }
+    }
+    
+    
     
   </style>
 
 </head>
-<body>
+<body class="flex-col">
   <header>
+  <!-- <header class="flex-row space-between"> -->
     <div class="flex-row space-between">
-      <div>The Princess of Arena Cam Ranh Home</div>
-      <button class="btn btn-white-text btn-transparent">Sign In</button>
+      <div class="header-title">The Princess of Arena Cam Ranh Home</div>
+      <div class="flex-row align-center">
+        <a href="index.html">Home</a>
+        |
+        <a href="hotel_manage.html">Admin</a>
+        <button class="btn btn-white-text btn-transparent btn-sm" id="btn-signout">Sign Out</button>
+      </div>
     </div>
   </header>
   <main class="flex-col main-body">
-    <section id="explore">
-      <div class="section-title">Explore</div>
-
-      <div class="flex-row justify-left" id="explore-content" style="gap: 2%; height:500px">
+    <section id="section-explore">
+      <div class="title">Explore</div>
+      <div class="space-between" id="explore-content">
         <div class="flex-col" id="left-col">
-          <div id="search-area">
+          <div class="rounded-border" id="search-area">
             <div class="flex-col" id="search-area-content">
-              <div style="font-weight: 600; font-size: 25px;">Search</div>
+              <div  class="bold subtitle" >Search</div>
               <div class="flex-col" id="search-form">
-                <div>
+                <div class="label-input">
                   <label for="room-type">Room Type</label>
                   <select class="input_box" id="room-type" name="room-type">
-                      <option id="all" value="all">All</option>
+                      <option value="">All</option>
                       <option id="single" value="single">Single</option>
                       <option id="double" value="double">Double</option>
                       <option id="family" value="family">Family</option>
@@ -211,62 +318,81 @@
                   </select>
                 </div>
     
-                <div>
+                <div class="label-input">
                   <label for="checkin">Check-in Date</label>
                   <input class="input_box" type="date" id="checkin" name="checkin"/>
                 </div>
     
-                <div>
+                <div class="label-input">
                   <label for="checkin">Check-out Date</label>
                   <input class="input_box" type="date" id="checkout" name="checkout"/>
+                </div>
+
+                <div class="label-input">
+                  <label for="guest">Total Guest</label>
+                  <input type="number" id="guest" min="1" value="1"/>
+                </div>
+
+                <div class="label-input">
+                  <label>Utilities</label>
+                  <button type="button" class="btn" id="btn-select-util" data-bs-toggle="modal" data-bs-target="#modal-select-util" >Select utilities</button>
                 </div>
               </div>
 
               <button type="submit" class="btn btn-red" id="btn-search">Search</button>
-            </div>
-          </div>
-
-          <div id="map" style="width: 100%; height: 40%;">
-            <div class="mapouter" style="width: 100%; height: 100%;">
-              <div class="gmap_canvas" style="width: 100%; height: 100%;">
-                <iframe style="width: 100%; height: 100%;" id="gmap_canvas" src="https://maps.google.com/maps?q=the%20princess%20of%20Arena%20Cam%20Ranh%20Home&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                <a href="https://www.online-timer.net"></a>
-                <br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style>
-                <a href="https://www.embedgooglemap.net"></a>
-                <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
-              </div>
+              <div id="search-msg"></div>
             </div>
           </div>
         </div>
 
         <div class="flex-col" id="right-col">
           <div class="flex-row" id="highlight-photo">
-            <img id="photo0" style="width:60%;">
+            <img id="photo0" style="width:60%;"/>
             <div class="flex-col" style="width:40%;">
-              <img id="photo1" style="height:48%;">
-              <img id="photo2" style="height:48%;">
+              <img id="photo1" style="height:48%;"/>
+              <img id="photo2" style="height:48%;"/>
             </div>
           </div>
           <div class="flex-row" id="normal-photo">
-            <img id="photo3">
-            <img id="photo4">
-            <img id="photo5">
-            <img id="photo6">
+            <img id="photo3"/>
+            <img id="photo4"/>
+            <img id="photo5"/>
+            <img id="photo6"/>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="utility" class="flex-col">
-      <div class="section-title">Utilities</div>
-      <div class="section-colored">
+
+    <section id="section-result" class="flex-col" style="display: none;">
+      <div class="title">Search Result</div>
+      <div id="result-content">
+        <table class="table-w-border" id="table-result" width="100%">
+          <thead>
+            <th >Apartment Type</th>
+            <th style="width:10%">Preferred capacity</th>
+            <th style="width:10%">Price</th>
+            <th style="width:10%">Quantity</th>
+            <th style="width:25%">Reserve</th>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
       </div>
       
     </section>
 
-    <section id="rule" class="flex-col">
-      <div class="section-title">Rules</div>
-      <div class="section-colored">
+    <section id="section-utility" class="flex-col">
+      <div class="title">Utilities</div>
+      <div class="section-colored rounded-border flex-row space-around" id="utility-content">
+      </div>
+      
+    </section>
+
+    <section id="section-rule" class="flex-col">
+      <div class="title">Rules</div>
+      <div class="section-colored rounded-border">
         <table id="table-rule">
           <tbody></tbody>
         </table>
@@ -274,64 +400,291 @@
       
     </section>
 
+    <section id="section-map">
+      <div id="map" style="width: 100%;">
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe style="width: 100%;" id="gmap_canvas" src="https://maps.google.com/maps?q=the%20princess%20of%20Arena%20Cam%20Ranh%20Home&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <a href="https://www.online-timer.net"></a>
+            <br><style>.mapouter{position:relative;}</style>
+            <a href="https://www.embedgooglemap.net"></a>
+            <style>.gmap_canvas {overflow:hidden;background:none!important;}</style>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <div class="modal fade" id="modal-select-util" tabindex="-1" aria-labelledby="modal_select_util_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_select_util_label">Select Utilities</h5>
+          <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="gap: 1.5rem;">
+            <div id="utilities-select"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
   <script>
-    let apiUrl = "https://api.npoint.io/19d2682dd52d37f2f077"
+    const dataURL = "https://api.npoint.io/19d2682dd52d37f2f077/data"
+    const dataVerURL = "https://api.npoint.io/19d2682dd52d37f2f077/version"
     let hotelData = null
-    let photo_area = document.querySelector("#right-col")
-    let btn_search = document.querySelector("#btn-search")
-    let room_type = document.querySelector("#room-type")
-    let checkin = document.querySelector("#checkin")
-    let checkout = document.querySelector("#checkout")
-    let table_rule = document.querySelector("#table-rule tbody")
+    let selected_util = null
+    let room_result = null
+    let days = 0
+    let dataVer = -1
+    const photo_area = document.querySelector("#right-col")
+    const btn_search = document.querySelector("#btn-search")
+    const search_msg = document.querySelector("#search-msg")
+    const room_type = document.querySelector("#room-type")
+    const checkin = document.querySelector("#checkin")
+    const checkout = document.querySelector("#checkout")
+    const table_rule = document.querySelector("#table-rule tbody")
+    const utility_content = document.querySelector("#utility-content")
+    const section_result = document.querySelector("#section-result")
+    const result_content = document.querySelector("#result-content")
+    const table_result = document.querySelector("#table-result tbody")
+    const utilities_select = document.querySelector("#utilities-select")
+    const btn_select_util = document.querySelector("#btn-select-util")
+    const btn_admin = document.querySelector("#btn-admin")
+    const btn_signout = document.querySelector("#btn-signout")
 
+    let signin_state = localStorage.getItem("state")
+    if (signin_state != "admin-signed-in") btn_signout.style.display = "none"
+    else btn_signout.style.display = "block"
 
-    let room_list = null
+    btn_signout.addEventListener("click", () => {
+      localStorage.setItem("admin","")
+      localStorage.setItem("password","")
+      localStorage.setItem("state","")
+      location.reload()
+    })
 
+    let today = new Date().toISOString().split('T')[0];
+    checkin.setAttribute('min', today);
+    checkout.setAttribute('min', today);
+
+    btn_search.addEventListener("click", () => {
+      search_msg.innerHTML = ""
+      if(checkin.value == "" || checkout.value == ""  ) {
+        search_msg.innerHTML = "Please choose checkin and checkout date"
+        return
+      }
+
+      if (checkin.value > checkout.value) {
+        search_msg.innerHTML = "Checkin and checkout date are invalid"
+        return
+      }
+
+      days = calculateDays(checkin.value, checkout.value)
+      localStorage.setItem("checkin",checkin.value)
+      localStorage.setItem("checkout",checkout.value)
+      localStorage.setItem("days",days)
+
+      displaySearchResult()
+    })
+
+    function calculateDays(date1, date2) {
+      var d1 = new Date(date1);
+      var d2 = new Date(date2);
+
+      return (d2.getTime() - d1.getTime())/(1000 * 3600 * 24)
+    }
 
     async function fetchData(url) {
       try {
         let res = await fetch(url);
-        const json = await res.json();
-        const data = json.data;
+        const data = await res.json();
         return data;
       } catch (error) {
         console.error(error)
       }
     }
 
-    async function getHotelData(url) {
-      hotelData = await fetchData(url)
-      localStorage.setItem('hotelData', JSON.stringify(hotelData))
+    async function getHotelData() {
+      // let res = await fetch(dataVerURL);
+      // dataVer = await res.json();
+      // if (localStorage.getItem('dataVer') != dataVer) {
+        hotelData = await fetchData(dataURL)
+      //   localStorage.setItem('hotelData', JSON.stringify(hotelData))
+      //   localStorage.setItem('dataVer', dataVer)
+      // }
+      // else {
+      //   hotelData = JSON.parse(localStorage.getItem('hotelData'))
+      // }
     }
 
     function search() {
-      let result = null
-      
-    }
+      type = room_type.value
+      selected_util = generalize_util()
+      let result = []
+      if (type == "" && selected_util.length==0) 
+        return hotelData.room_list
 
-    async function main() {
-      await getHotelData(apiUrl)
-
-      let photos = hotelData.photos
-      room_list = hotelData.room_list
-      let rules = hotelData.rules
-
-      for (let i=0; i<7; i++) {
-        document.querySelector(`#photo${i}`).src = photos[i]
+      if (type=="") {
+        result = hotelData.room_list
+      }
+      else {
+        hotelData.room_list.forEach(room => {
+          if (type == room.type) result.push(room)
+        })
       }
 
-      for (let i=0; i<rules.length; i++) {
+      if (selected_util.length==0) 
+        return result
+      
+      let temp = []
+      result.forEach(room => {
+        if (room.utilities.some(u=> selected_util.includes(u)))
+          temp.push(room)
+      })
+      result = temp
+      return result
+    }
+
+    function displaySearchResult() {
+      room_result = search()
+
+      table_result.innerHTML = ``
+
+      if (room_result == null || room_result.length == 0) {
+        result_content.innerHTML = "Huhu no room is available for your search :("
+        return
+      }
+
+      room_result.forEach(room => {
+        let beds_html = ``
+        let utilities_html =``
+        let rowId = `row${room.id}`
+        
+        let roomPrice = room.rate*days
+
+        room.beds.forEach(bed => {
+          beds_html += `<div>${bed.amount} ${bed.bed_type} bed</div>`
+        })
+
+        room.utilities.forEach(util => {
+          if (selected_util.includes(util))
+            utilities_html += `<div class="flex-row matched-util"><i class="fa fa-check"></i>${util}</div>`
+          else
+            utilities_html += `<div class="flex-row"><i class="fa fa-check"></i>${util}</div>`
+
+        })
+
+        table_result.innerHTML += 
+        `
+        <tr id="${rowId}">
+          <td>
+            <div class="bold" style="font-size:15px;">${room.name}</div>
+            <div class="bold">Beds:</div>
+            <div class="bed">${beds_html}</div>
+            <div class="bold">Utilities:</div>
+            <div class="util flex-row" style:"width: 1  00px; flex-wrap: wrap;">${utilities_html}</div>
+          </td>
+          <td>${room.capacity}</td>
+          <td id="roomPrice">
+            <div class="originalPrice">$${room.rate*days}</div>
+            <div>$<span class="roomPrice">${roomPrice}</span></div>
+          </td>
+          <td>
+            <input type="number" class="quantity" min="1" style="width:35px" value="1"/>
+          </td>
+          <td>
+            <div class="reserve">
+              <div>Total price:</div>
+              <div>$<span class="totalPrice"></span></div>
+            </div>
+            <button class="btn-book btn btn-warning btn-sm" onclick=bookClicked(${room.id})>Book now</button>
+          </td>
+        </tr>
+        `
+
+        let totalPrice = document.querySelector(`#${rowId} .quantity`).value*roomPrice
+        document.querySelector(`#${rowId} .totalPrice`).innerHTML = totalPrice
+      })
+      section_result.style.display = "block"
+    } 
+
+    function bookClicked(roomId) {
+      let room = null
+      room_result.forEach(r => {
+        if (r.id == roomId) {
+          room = r
+          return
+        }
+      })
+      let bookingInfo = {
+            "room":room,
+            "originalPrice":Number(room.rate*days),
+            "roomPrice":Number(document.querySelector(`#row${roomId} .roomPrice`).innerHTML),
+            "quantity":Number(document.querySelector(`#row${roomId} .quantity`).value),
+            "guest":Number(document.querySelector(`#guest`).value)
+          }
+          localStorage.setItem("bookingInfo",JSON.stringify(bookingInfo))
+          window.open("booking.html")
+    }
+
+    function generalize_util() {
+      let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+      let selected = []
+      let total = checkboxes.length
+      for (let i = 0; i < total; i++) {
+              selected.push(checkboxes[i].value)
+      }
+      return selected
+    }
+
+
+    async function main() {
+      await getHotelData(dataURL)
+
+      checkin.value = localStorage.getItem("checkin")
+      checkout.value = localStorage.getItem("checkout")
+
+      let photos = hotelData.photos
+      let rules = hotelData.rules
+      let utilities = hotelData.utilities
+
+      for (let i=0; i<7; i++) {
+        let img = document.querySelector(`#photo${i}`)
+        img.src = photos[i]
+        img.onclick = function() {window.open(img.src);}
+      }
+
+      rules.forEach(r => { 
         table_rule.innerHTML += 
         `
         <tr>
-          <td class="rule-bold">${rules[i].rule}</td>
-          <td>${rules[i].description}</td>
-        </tr>
+          <td>${r.rule}</td>
+          <td>${r.detail}</td>
+        </tr
         `
-      }
+      });
 
+
+      utilities.forEach((u,i) => {
+        let detail_html = ``
+        if (i%2==0) utility_content.innerHTML += `<div class="flex-col util-col" id="util-col${Math.floor(i/2)}"></div>`
+        detail_html += `<div class="flex-col"><div class="flex-row util-title"><i class="fa fa-star"></i>${u.utility}</div>`
+        u.detail.forEach(d => {
+          detail_html += `<div>${d}</div>`
+          utilities_select.innerHTML += 
+          `
+          <div class="flex-row" style="gap:2px;"><input type="checkbox" id="${d}" value="${d}"/>${d}</div>
+          `
+        })
+        document.querySelector(`#util-col${Math.floor(i/2)}`).innerHTML += detail_html
+      })
+
+      
 
     } 
 
@@ -339,4 +692,6 @@
   </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>    =
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
 </body>

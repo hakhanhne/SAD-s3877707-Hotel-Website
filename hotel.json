@@ -1,87 +1,150 @@
 {
-  "data":
-  {
-    "name":"The Princess of Arena Cam Ranh Home",
-    "adddress":"Toà Sea - Khu nghỉ The Arena, Miếu Ông, 26H7+WRQ, Nguyễn Tất Thành, Cam Hải Đông, Tp. Cam Ranh, Khánh Hòa 57000",
-    "phone":"090 335 86 23",
-    "coordination": 
-    {
-      "lat":10.0298392, 
-      "long":109.2146164
-    },
-    "owner":"An Gia Land",
-    "room_list": 
-    [
+  "data": {
+    "name": "The Princess of Arena Cam Ranh Home",
+    "owner": "An Gia Land",
+    "phone": "090 335 86 23",
+    "rules": [
       {
-        "name":"single",
-        "size":50,
-        "rate":100,
-        "number_of_room":2
+        "rule": "Check-in",
+        "detail": "14:00 - 22:00"
       },
       {
-        "name":"double",
-        "size":50,
-        "rate":100,
-        "number_of_room":2
+        "rule": "Check-out",
+        "detail": "08:00 - 12:00"
       },
       {
-        "name":"family",
-        "size":50,
-        "rate":100,
-        "number_of_room":2
+        "rule": "Pets",
+        "detail": "Pets are not allowed"
       },
       {
-        "name":"sea-view",
-        "size":50,
-        "rate":100,
-        "number_of_room":2
+        "rule": "Cash only",
+        "detail": "This property only accepts cash payments"
       },
       {
-        "name":"park-view",
-        "size":50,
-        "rate":100,
-        "number_of_room":2
+        "rule": "Smoking",
+        "detail": "Smoking is not allowed"
+      },
+      {
+        "rule": "Parties",
+        "detail": "Parties/events are not allowed"
+      },
+      {
+        "rule": "Cancellation/prepayment",
+        "detail": "Cancellation and prepayment policies vary according to apartment type. Please enter the dates of your stay and check the conditions of your required room"
+      },
+      {
+        "rule": "No age restriction",
+        "detail": "There is no age requirement for check-in"
       }
     ],
-    "rules":
-    [
-      {
-        "rule":"Pets",
-        "description":"Pets are not allowed"
-      },
-      {
-        "rule":"Cash only",
-        "description":"This property only accepts cash payments"
-      },
-      {
-        "rule":"Smoking",
-        "description":"Smoking is not allowed"
-      },
-      {
-        "rule":"Parties",
-        "description":"Parties/events are not allowed"
-      },
-      {
-        "rule":"Cancellation/prepayment",
-        "description":"Cancellation and prepayment policies vary according to apartment type. Please enter the dates of your stay and check the conditions of your required room"
-      },
-      {
-        "rule":"No age restriction",
-        "description":"There is no age requirement for check-in"
-      }
-
-    ],
-    "checkin": "14:00 - 22:00",
-    "checkout": "08:00 - 12:00",
-    "photos":
-    [
-      "https://t-cf.bstatic.com/xdata/images/hotel/max500/397679476.jpg?k=6a33e395927c765e4a0c24f0144fc5f82d25094c84e118b8d820eed0140058e2&o=&hp=1",
+    "photos": [
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679476.jpg?k=6a33e395927c765e4a0c24f0144fc5f82d25094c84e118b8d820eed0140058e2&o=&hp=1",
       "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679601.jpg?k=8d420d6fcd15cae1e327c759b8aa44e7a893f66db176e53983c3a6f83845d82c&o=&hp=1",
       "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/396662291.jpg?k=3d4414ab19b4813a46fd246b4b64f34d0b0a2e7d24dd4ad049aab90c8109c3b8&o=&hp=1",
       "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/395694401.jpg?k=bfb8a6a4e433232f2c0d5dd0233cb38bf4eae280d211a4d266a487384d674e20&o=&hp=1",
       "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397680322.jpg?k=91bf91ead94a551aac97e80652e739f38a9b95326b79adb1ef4132c3cc01e8e2&o=&hp=1",
-      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679992.jpg?k=26ab0eec59f1aa4acf25856b370969b6a2400f56368661f5b901392d65b99247&o=&hp=1"
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/397679992.jpg?k=26ab0eec59f1aa4acf25856b370969b6a2400f56368661f5b901392d65b99247&o=&hp=1",
+      "https://t-cf.bstatic.com/xdata/images/hotel/max1280x900/397680326.jpg?k=d5d994117787993cf4c3f046a9cfaa022fc9bd92746fb6120973b54a7b46b10d&o=&hp=1"
     ],
-    "utilities":["AC","Terrace","Pool","Gym","Restaurant","Beach","Parking"]
+    "adddress": "Toà Sea - Khu nghỉ The Arena, Miếu Ông, 26H7+WRQ, Nguyễn Tất Thành, Cam Hải Đông, Tp. Cam Ranh, Khánh Hòa 57000",
+    "room_list": [
+      {
+        "type": "single",
+        "name":"One-Single-Bedroom Apartment",
+        "rate": 100,
+        "size": 36,
+        "capacity":1,
+        "beds":[
+          {
+            "bed_type":"single",
+            "amount":1
+          }
+        ],
+        "number_of_room": 2,
+        "utilities": ["Private bathroom", "Kitchen", "Flat-screen TV", "Parking", "Air conditioning"]
+      },
+      {
+        "type": "double",
+        "name":"One-Large-Bedroom Apartment",
+        "rate": 100,
+        "size": 40,        
+        "capacity":2,
+        "beds":[
+          {
+            "bed_type":"double",
+            "amount":1
+          }
+        ],
+        "number_of_room": 2,
+        "utilities": ["Private bathroom", "Kitchen", "Beach view", "Flat-screen TV", "Parking", "Air conditioning", "Swimming Pool"]
+      },
+      {
+        "type": "double",
+        "name":"Two-Single-Bedroom Apartment",
+        "rate": 100,
+        "size": 36,
+        "capacity":2,
+        "beds":[
+          {
+            "bed_type":"single",
+            "amount":2
+          }
+        ],
+        "number_of_room": 2,
+        "utilities": ["Private bathroom", "Kitchen", "Beach view", "Flat-screen TV", "Parking", "Air conditioning", "Swimming Pool"]
+      },
+      {
+        "type": "family",
+        "name":"Family Apartment",
+        "rate": 100,
+        "size": 50,
+        "capacity":4,
+        "beds":[{
+          "bed_type":"double",
+          "amount":2
+        }
+      ],
+      "number_of_room": 2,
+      "utilities": ["Private bathroom", "Kitchen", "Beach view", "Park view", "Flat-screen TV", "Parking", "Air conditioning", "Swimming Pool", "Non-smoking rooms", "Gym"]
+    }
+  ],
+  "utilities": [
+    {
+      "utility":"Bathroom",
+      "detail":["Private bathroom"]
+    },
+    {
+      "utility":"Outdoors",
+      "detail":["Balcony","Terrace","Garden"]
+    },
+    {
+      "utility":"Kitchen",
+      "detail":["Kitchen"]
+    },
+    {
+      "utility":"Media & Technology",
+      "detail":["Flat-screen TV"]
+    },
+    {
+      "utility":"View",
+      "detail":["Beach view", "Park view"]
+    },
+    {
+      "utility":"Parking",
+      "detail":["Parking"]
+    },
+    {
+      "utility":"Miscellaneous",
+      "detail":["Air conditioning","Non-smoking throughout","Non-smoking rooms"]
+    },    
+    {
+      "utility":"Sport",
+      "detail":["Swimming Pool","Gym"]
+    }
+  ],
+  "coordination": {
+    "lat": 10.0298392,
+    "long": 109.2146164
   }
+}
 }

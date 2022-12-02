@@ -1,0 +1,619 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Management</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Poppins">
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Merienda">
+
+  <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Short Stack">
+
+  <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <!-- boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <style>
+    .right-header {
+      display: flex;
+      /* flex-direction: column-reverse; */
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    body * {
+      font-family: "Poppins", sans-serif;
+      font-size: 13px;
+    }
+    
+    body {
+      margin: 0px;
+    }
+    
+    header {
+      background-color: rgb(163, 69, 69);
+      font-weight: 600;
+      padding: 10px 25px 10px 25px;
+    }
+
+    header * {
+      color: white;
+    }
+
+    .header-title {
+      font-size: 22px;
+      font-family: 'Merienda';
+    }
+
+    .main-body{
+      gap: 40px;
+      width: 90%;
+      align-self: center;
+    }
+
+    .main-body > * {width: 100%;}
+    
+    .main-body, #hotel-info-form{
+      align-items: center;
+      justify-items: center;
+    }
+
+    .main-body{
+      gap: 40px !important;
+      width: 90%;
+      align-self: center;
+    }
+
+    .main-body section {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    } 
+
+    
+    label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .title{
+      font-family: 'Short Stack';
+      font-weight: 600;
+      font-size: 30px;
+      text-align: center;
+      /* color: rgb(163, 69, 69); */
+    }
+
+    .section-colored {
+      background-color: rgb(248, 223, 223);
+      padding: 20px;
+    }
+    input {
+      padding: 5px 3px;
+      width: 180px;
+    }
+
+    input.input_box {
+      border: none;
+      width:100%;
+    }
+    #hotel-info-form {
+      gap: 25px;
+    }
+
+    #hotel-info-form-main {
+      gap: 25px;
+    }
+
+    /* #hotel-info-form-main > div {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    } */
+
+    .flex-row-to-col {
+      display: flex;
+      gap: 7px;
+    }
+    .width100 {width: 100%;}
+
+    #btn-confirm {width:fit-content;}
+
+    .clickable:hover{cursor: pointer;}
+    .flex-row{
+      display: flex;
+      gap: 7px;
+    }
+
+    .flex-col{
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .space-between {
+      justify-content: space-between;
+    }
+
+    .space-around {
+      justify-content: space-around;
+    }
+
+    .justify-left {
+      justify-content: left;
+    }
+
+    .align-center {align-items: center;}
+
+    .label-input {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .btn {
+      border: solid 1.5px transparent;
+      border-radius: 3px;
+      align-items: center;
+      justify-content: center;
+      height: fit-content;
+    }
+
+    .btn:hover{
+      cursor: pointer;
+    }
+
+    .btn:active{
+      opacity: 85%;
+    }
+
+    .btn-white-text {
+      border-color: white;
+      color: white;
+    }
+
+    .btn-transparent{
+      background-color: transparent;
+    }
+
+    .btn-red {
+      background-color: rgb(163, 69, 69);
+      color: white;
+    }
+
+    .btn-yellow {
+      background-color: #febb02;
+      color: white;
+    }
+
+    .table-w-border, .table-w-border tr, .table-w-border td, .table-w-border th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    .table-no-border, .table-no-border tr, .table-no-border td, .table-no-border th {
+      border: none;
+    }
+
+    th {text-align: center;}
+
+    th, td {padding: 5px 3px;}
+
+    #section-hotel th, #section-hotel td {padding: 0px 3px;} 
+
+    .text-center {
+      text-align: center;
+    }
+
+    .justify-center {justify-content: center;}
+
+    table thead {
+      background-color: rgb(163, 69, 69);
+      height: 40px;
+      color: white;
+    }
+
+    .table-yellow thead {background-color: #febb02; color: black;}
+
+    .bold{font-weight: 600;}
+
+    table td{text-align: center;}
+
+    .rounded-border{
+      border-radius: 5px;
+      border-color: transparent;
+    }
+
+    img {
+      border-radius: 5px;
+      border-color: transparent;
+    }
+
+    table {
+      overflow-x: auto;
+      width: 80%;
+    }
+    
+    .subtitle {font-size: 25px;}
+    
+
+    @media screen and (max-width: 40em) { 
+      input{width: 100%;}
+      body * {font-size: 12px;}
+      .title {font-size: 25px;}
+      .subtitle {font-size: 20px;}
+      .header-title {font-size: 17px;}
+      .page-title{font-size: 25px;}
+      #btn-confirm {width:max-content;}
+      #hotel-info-form-main > div {flex-direction: column;}
+      .right-header{flex-direction: column-reverse; gap: 10px;}
+      table{width: 100%;}
+      .flex-row-to-col {
+        flex-direction: column;
+      }
+    }
+    
+    
+  </style>
+
+</head>
+<body class="flex-col">
+  <header>
+  <!-- <header class="flex-row space-between"> -->
+    <div class="flex-row space-between">
+      <div class="header-title">The Princess of Arena Cam Ranh Home</div>
+      <div class="right-header">
+        <div class="flex-row align-center">
+          <a href="index.html">Home</a>
+          |
+          <a href="hotel_manage.html">Admin</a>
+        </div>
+        <button class="btn btn-white-text btn-transparent btn-sm" id="btn-signout">Sign Out</button> 
+      </div>
+    </div>
+  </header>
+  <main class="flex-col main-body">
+    <section id="section-hotel">
+      <div class="title">Hotel Information</div>
+      <div class="flex-col" id="hotel-info-form">
+        <div class="flex-col" id="hotel-info-form-main">
+          <div class="flex-col">
+            <div class="width100 label-input">
+              <label for="name">Hotel name</label>
+              <input class="width100" type="text" id="name" placeholder="Name"/>
+            </div>
+
+            <div class="flex-row-to-col space-between">
+              <div class="label-input">
+                <label for="owner">Owner company</label>
+                <input type="text" id="owner" placeholder="Owner"/>
+              </div>
+              <div class="label-input">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" placeholder="Phone"/>
+              </div>
+            </div>
+
+            <div class="label-input">
+              <label for="coordinate">Coordinate</label>
+              <div class="flex-row-to-col space-between">
+                <input type="number" id="lat" placeholder="Latitute"/>
+                <input type="number" id="long" placeholder="Longtitude"/>
+              </div>
+            </div>
+            
+          </div>
+
+          <div>
+            <div class="width100 label-input">
+              <div class="flex-row align-center">
+                <label for="table-rule">Rules</label>
+                <button id="btn-add-rule" onclick="addRule()">Add new</button>
+              </div>
+              
+              <table class="width100 table-w-border table-yellow" id="table-rule">
+                <thead>
+                  <th style="width:10%;">Remove</th>
+                  <th style="width:30%;">Rule</th>
+                  <th>Description</th>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <div class="width100 label-input">
+              <div class="flex-row align-center">
+                <label for="table-utility">Utilities</label>
+                <button id="btn-add-util" onclick="addUtil()">Add new</button>
+              </div>
+              <table class="width100 table-w-border table-yellow" id="table-utility">
+                <thead>
+                  <th style="width:10%;">Remove</th>
+                  <th style="width:30%;">Utilities</th>
+                  <th>Sub-elements</th>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="flex-col align-center">
+          <button type="submit" class="btn btn-warning btn-sm" id="btn-confirm">Save Change</button>
+          <div id="msg"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="align-center" id="section-room">
+      <div class="title">Room Information</div>
+      <table class="table-w-border" id="table-room">
+      <thead>
+        <th>Edit</th>
+        <th>Room Name</th>
+        <th>Room Type</th>
+        <th>Normal Rate</th>
+        <th>Capacity</th>
+        <th>Total room</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    </section>
+
+  </main>
+
+  <div class="modal fade" id="modal-edit-room" tabindex="-1" aria-labelledby="modal-edit-room-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-edit-room-label">Select Utilities</h5>
+          <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="gap: 1.5rem;">
+            <div id="utilities-select"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <script>
+    let hotelData = null
+    let rule_count = 0;
+    let util_count = 0;
+    const table_room = document.querySelector("#table-room tbody");
+    const dataURL = "https://api.npoint.io/19d2682dd52d37f2f077/data"
+    const dataVerURL = "https://api.npoint.io/19d2682dd52d37f2f077/version"
+    const name = document.querySelector("#name")
+    const phone = document.querySelector("#phone")
+    const owner = document.querySelector("#owner")
+    const table_rule = document.querySelector("#table-rule tbody")
+    const table_utility = document.querySelector("#table-utility tbody")
+    const btn_add_rule = document.querySelector("#btn-add-rule")
+    const btn_add_util = document.querySelector("#btn-add-util")
+    const msg = document.querySelector("#msg")
+    const btn_confirm = document.querySelector("#btn-confirm")
+    const lat = document.querySelector("#lat")
+    const long = document.querySelector("#long")
+
+
+    btn_confirm.addEventListener("click", async () => {await saveChange()})
+
+    let signin_state = localStorage.getItem("state")
+    if (signin_state != "admin-signed-in")
+      location.replace("admin_signin.html")
+
+    async function fetchData(url) {
+      try {
+        let res = await fetch(url);
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    async function getHotelData() {
+      hotelData = await fetchData(dataURL)
+    }
+
+    function addRule() {
+      rule_count++
+      let id = `rule${rule_count}`
+      table_rule.innerHTML +=
+      `
+      <tr id="${id}">
+          <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+          <td><input class="rule input_box" type="text"/></td>
+          <td><input class="rule-detail input_box" type="text"/></td>
+      </tr>
+      `
+    }
+
+    function addUtil() {
+      util_count++
+      let id = `util${util_count}`
+      table_utility.innerHTML +=
+      `
+      <tr id="${id}">
+          <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+          <td><input class="util input_box" type="text"/></td>
+          <td><input class="util-detail input_box" type="text"/></td>
+      </tr>
+      `
+    }
+
+    function removeRow(rowId) {
+      document.querySelector(`#${rowId}`).remove()
+    }
+
+    function displayRule() {
+      let rules = hotelData.rules
+      let html = ``
+      rules.forEach((rule,i) => {
+        rule_count++;
+        let id = `rule${rule_count}`
+        html += 
+        `
+        <tr id="${id}">
+          <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+          <td><input class="rule input_box" type="text" value="${rule.rule}"/></td>
+          <td><input class="rule-detail input_box" type="text" value="${rule.detail}"/></td>
+        </tr>
+        `
+      })
+      table_rule.innerHTML += html
+    }
+
+    const digits_only = string => [...string].every(c => '0123456789'.includes(c));
+
+    function getRule() {
+      let rules = document.querySelectorAll("#table-rule tbody tr")
+      let result = []
+      rules.forEach(r => {
+        let rule = document.querySelector(`#${r.id} .rule`).value
+        let detail = document.querySelector(`#${r.id} .rule-detail`).value
+        if (rule != "" && detail != "")
+          result.push({"rule":rule, "detail":detail})
+      })
+      return result
+    }
+
+    function getUtility() {
+      let utilities = document.querySelectorAll("#table-utility tbody tr")
+      let result = []
+      utilities.forEach(u => {
+        let util = document.querySelector(`#${u.id} .util`).value
+        let detail = document.querySelector(`#${u.id} .util-detail`).value
+        if (util != "" && detail != "") {
+          let detail_list = detail.split(/[,]+/)
+          for (let i=0; i<detail_list.length; i++) {
+            detail_list[i] = detail_list[i].trim();
+          }
+          result.push({"utility":util, "detail":detail_list})
+        }
+      })
+      return result
+    }
+
+    async function saveChange() {
+      msg.innerHTML = ""
+      phone.value = phone.value.replace(/\s+/g, '');
+      if (name.value == "" || owner.value =="" || phone.value=="") {
+        msg.innerHTML = "Please fill in all information"
+        return
+      }
+      if(!digits_only(phone.value)) {
+        msg.innerHTML = "Phone number is invalid"
+        return
+      }
+      let temp = hotelData
+      temp.name = name.value
+      temp.phone = phone.value
+      temp.owner= owner.value
+      temp.rules = getRule()
+      temp.utilities = getUtility()
+      temp.coordinate = {"lat":Number(lat.value),"long":Number(long.value)}
+
+      temp = JSON.stringify(temp)
+      
+
+      try {
+        let response = await fetch(`https://api.npoint.io/19d2682dd52d37f2f077`, {
+        method: 'POST',
+        headers: {"Content-Type":"application/json"},
+        body: temp
+        })
+        .then(response => {
+            console.log(response.status)
+            if(response.status==200 || response.status==202 ) {
+            alert("Updated movie successfully ")
+                location.reload();
+            }
+            else {
+              alert("Sorry, update movie failed")
+            }
+        })
+        } catch(error) {
+            console.log(error)
+        }
+
+    }
+
+    function displayUtility() {
+      let utilities = hotelData.utilities
+      let html = ``
+      utilities.forEach((util,i) => {
+        util_count++;
+        let id = `util${util_count}`
+        html += 
+        `
+        <tr id="${id}">
+          <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
+          <td><input class="util input_box" type="text" value="${util.utility}"/></td>
+          <td><input class="util-detail input_box" type="text" value="${util.detail.join(", ")}"/></td>
+        </tr>
+        `
+      })
+      table_utility.innerHTML += html
+    }
+
+
+
+    function displayHotelData() {
+      name.value = hotelData.name
+      phone.value = hotelData.phone
+      owner.value = hotelData.owner
+      lat.value =hotelData.coordinate.lat
+      long.value =hotelData.coordinate.long
+      displayRule()
+      displayUtility()
+    }
+
+    function displayRoomList() {
+      let room_list = hotelData.room_list
+      let html=``
+      room_list.forEach(room => {
+        html += 
+        `
+        <tr id="row${room.id}">
+          <td class="text-center clickable" onclick="rowClicked(${room.id})"><i class = "fa fa-edit"></i></td>
+          <td>${room.name}</td>
+          <td>${room.type}</td>
+          <td>${room.rate}</td>
+          <td>${room.capacity}</td>
+          <td>${room.total_room}</td>
+        </tr>
+        `
+      });
+      table_room.innerHTML = html
+    }
+
+    async function main() {
+      await getHotelData()
+      displayHotelData()
+      displayRoomList()
+      
+    }
+
+    main()
+
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+</body>

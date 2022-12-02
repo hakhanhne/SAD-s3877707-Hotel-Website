@@ -433,7 +433,7 @@
                   <table class="table-w-border" id="table-bed">
                     <thead>
                       <th>Remove</th>
-                      <th>Type</th>
+                      <th>Bed type</th>
                       <th>Amount</th>
                     </thead>
                     <tbody></tbody>
@@ -580,7 +580,7 @@
             `
             <tr id="${id}">
               <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
-              <td><input required class="bed-type input_box" type="string" value="${b.bed_type}"/></td>
+              <td><input required class="bed-type input_box" type="text" value="${b.bed_type}"/></td>
               <td><input required class="bed-amount input_box" type="number" value="${b.amount}" /></td>
             </tr>
             `
@@ -666,7 +666,7 @@
       <tr id="${id}">
         <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
         <td><input required class="rate input_box" type="number"/></td>
-        <td><input required class="tart input_box" type="date" /></td>
+        <td><input required class="start input_box" type="date" /></td>
         <td><input required class="end input_box" type="date"/></td>
       </tr>
       `
@@ -679,8 +679,8 @@
       `
       <tr id="${id}">
         <td class="text-center clickable" onclick="removeRow('${id}')"><i class="fa fa-trash-can"></i></td>
-        <td><input required class="bed-type input_box" type="number"/></td>
-        <td><input required class="bed-amount input_box" type="date" /></td>
+        <td><input required class="bed-type input_box" type="text"/></td>
+        <td><input required class="bed-amount input_box" type="number" /></td>
       </tr>
       `
     }
@@ -741,7 +741,6 @@
     function getSpecialRate() {
       let s_rates = document.querySelectorAll("#table-special-rate tbody tr")
       let result = []
-      console.log(s_rates)
       s_rates.forEach(r => {
         let rate = document.querySelector(`#${r.id} .rate`).value
         let start = document.querySelector(`#${r.id} .start`).value
@@ -750,7 +749,20 @@
         if (rate != "" && start != "" && end != "")
           result.push({"rate":rate, "start":start, "end":end})
       })
-      console.log(result)
+      return result
+
+    }
+
+    function getBed() {
+      let beds = document.querySelectorAll("#table-bed tbody tr")
+      let result = []
+      beds.forEach(b => {
+        let type = document.querySelector(`#${b.id} .bed-type`).value
+        let amount = document.querySelector(`#${b.id} .bed-amount`).value
+
+        if (type != "" && amount != "")
+          result.push({"bed_type":type, "amount":amount})
+      })
       return result
 
     }
@@ -775,7 +787,7 @@
         "size":m_size.value,
         "capacity":m_capacity.value,
         "utilities":selected_util,
-        "beds":1
+        "beds":getBed()
       }
       console.log(temp)
     }
@@ -822,7 +834,7 @@
         } catch(error) {
             console.log(error)
         }
-
+        
     }
 
     function displayUtility() {

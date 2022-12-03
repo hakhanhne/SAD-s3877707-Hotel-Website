@@ -411,7 +411,7 @@
                 </div> 
                 <div class="flex-col">
                   <label>Stock</label>
-                  <input disabled type="number" id="modal-stock" name="modal-stock"/>
+                  <input required disabled type="number" id="modal-stock" name="modal-stock"/>
                 </div> 
                 <div class="flex-col">
                   <label>Normal rate</label>
@@ -513,6 +513,11 @@
       saveRoom()
     })
 
+    btn_confirm.addEventListener("click", async () => {
+      await saveHotelData()
+
+    })
+
     document.querySelector("#btn-add-s-rate").addEventListener("click", (e) => {
       e.preventDefault()
       addSpecialRate()
@@ -612,9 +617,6 @@
 
     });
 
-
-    btn_confirm.addEventListener("click", async () => {await saveHotelData()})
-
     if (localStorage.getItem("state") != "admin-signed-in")
       location.replace("admin_signin.html")
 
@@ -630,6 +632,7 @@
 
     async function getHotelData() {
       hotelData = await fetchData(dataURL)
+      localStorage.setItem("hotelData", JSON.stringify(hotelData))
     }
 
     function addRule() {
@@ -769,27 +772,61 @@
 
 
     async function saveRoom() {
+      if (m_type.value == "" || m_name.value=="" || m_rate.value =="" || m_total.value=="" || m_stock.value=="") {
+        return
+      }
       let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
       let selected_util = []
       let total = checkboxes.length
       for (let i = 0; i < total; i++) {
         selected_util.push(checkboxes[i].value)
       }
+      let id=null
+      let isNew = false;
+      let newStock = 0
+      try {
+        id = room_chosen.id
+        newStock = Number(m_stock.value) + (Number(m_total.value) - room_chosen.total_room)
+      } catch (error) {
+        isNew = true
+        let id_list = []
+        hotelData.room_list.forEach(r => {id_list.push(r.id)})
+        
+        id = Math.floor(Math.random() * 100) + 1; //// Returns a random integer from 1 to 100:
+        while(id_list.includes(id)) {
+          id = Math.floor(Math.random() * 100) + 1;
+        }
 
+        newStock = m_stock.value
+        console.error(error)
+      }
 
       let temp = {
+        "id":id,
         "type":m_type.value,
         "name":m_name.value,
         "rate":m_rate.value,
         "special_rate":getSpecialRate(),
         "total_room":m_total.value,
-        "stock":m_stock.value,
+        "stock":newStock,
         "size":m_size.value,
         "capacity":m_capacity.value,
         "utilities":selected_util,
         "beds":getBed()
       }
-      console.log(temp)
+
+      if (!isNew) {
+        for (let i=0; i<hotelData.room_list.length; i++) {
+          if(temp.id == hotelData.room_list[i].id) {
+            isNew = false
+            hotelData.room_list[i] = temp
+            break;
+          }
+        }
+      }
+      else hotelData.room_list.push(temp)
+      console.log(hotelData)
+      localStorage.setItem("hotelData", JSON.stringify.hotelData )
     }
 
 
@@ -812,8 +849,9 @@
       temp.utilities = getUtility()
       temp.coordinate = {"lat":Number(lat.value),"long":Number(long.value)}
 
+      hotelData = temp
       temp = JSON.stringify(temp)
-      
+      localStorage.setItem("hotelData", JSON.stringify(temp))
 
       try {
         let response = await fetch(`https://api.npoint.io/19d2682dd52d37f2f077`, {
@@ -834,7 +872,7 @@
         } catch(error) {
             console.log(error)
         }
-        
+
     }
 
     function displayUtility() {

@@ -477,7 +477,7 @@
         return
       }
 
-      if (checkin.value > checkout.value) {
+      if (checkin.value >= checkout.value) {
         search_msg.innerHTML = "Checkin and checkout date are invalid"
         return
       }
@@ -496,6 +496,7 @@
 
       return (d2.getTime() - d1.getTime())/(1000 * 3600 * 24)
     }
+
 
     async function fetchData(url) {
       try {
@@ -523,7 +524,7 @@
       }
       else {
         hotelData.room_list.forEach(room => {
-          if (type == room.type) result.push(room)
+          if (type == room.type && room.stock > 0) result.push(room)
         })
       }
 
@@ -538,6 +539,7 @@
       result = temp
       return result
     }
+    
 
     function displaySearchResult() {
       room_result = search()
@@ -554,7 +556,39 @@
         let utilities_html =``
         let rowId = `row${room.id}`
         
-        let roomPrice = room.rate*days
+        let remain_days = days
+
+        let roomPrice = 0
+        
+        for (let i=0; i<room.special_rate.length & remain_days >0; i++) {
+          let sr = room.special_rate[i]
+          let special_days = 0
+          if (checkout.value <= sr.date_end && checkin.value >= sr.date_start) {
+            roomPrice = sr.rate*days
+            remain_days = 0
+            break;
+          }
+          else if ((checkout.value >= sr.date_end && checkin.value <= sr.date_start)) {
+            special_days = calculateDays(sr.date_start, sr.date_end)
+          }
+          else if ((checkout.value >= sr.date_start && checkout.value <= sr.date_end && checkin.value <= sr.date_start)) {
+            special_days = calculateDays(sr.date_start, checkout.value)
+          }
+          else if ((checkin.value >= sr.date_start && checkin.value <= sr.date_end && checkout.value >= sr.date_end  )) {
+            special_days = calculateDays(checkin.value, sr.date_end)
+          }
+
+          if (remain_days < special_days) {
+            roomPrice += remain_days*sr.rate
+            remain_days =0
+          } 
+          else {
+            remain_days -= special_days
+            roomPrice += special_days*sr.rate
+          }
+        }
+
+        if (remain_days > 0) roomPrice += remain_days*room.rate
 
         room.beds.forEach(bed => {
           beds_html += `<div>${bed.amount} ${bed.bed_type} bed</div>`

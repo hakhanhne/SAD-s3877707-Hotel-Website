@@ -23,7 +23,6 @@
   <style>
     .right-header {
       display: flex;
-      /* flex-direction: column-reverse; */
       flex-direction: row;
       gap: 20px;
     }
@@ -88,7 +87,6 @@
       font-weight: 600;
       font-size: 30px;
       text-align: center;
-      /* color: rgb(163, 69, 69); */
     }
 
     .section-colored {
@@ -122,7 +120,7 @@
       display: flex;
       gap: 7px;
     }
-    .width100 {width: 100%;}
+    .width100 {width: 100% !important;}
 
     #btn-confirm {width:fit-content;}
 
@@ -289,6 +287,11 @@
               <input class="width100" type="text" id="name" placeholder="Name"/>
             </div>
 
+            <div class="width100 label-input">
+              <label for="address">Address</label>
+              <input class="width100" type="text" id="address" placeholder="Address"/>
+            </div>
+
             <div class="flex-row-to-col space-between">
               <div class="label-input">
                 <label for="owner">Owner company</label>
@@ -390,6 +393,7 @@
                     <option id="single" value="single">Single</option>
                     <option id="double" value="double">Double</option>
                     <option id="family" value="family">Family</option>
+                    <option id="villa" value="villa">Villa</option>
                   </select>
                 </div> 
                 <div class="flex-col">
@@ -471,7 +475,7 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+  <script type="text/javascript" src="signinState.js"></script>
   <script>
     let hotelData = null
     let room_list = null
@@ -494,6 +498,7 @@
     const btn_confirm = document.querySelector("#btn-confirm")
     const lat = document.querySelector("#lat")
     const long = document.querySelector("#long")
+    const address = document.querySelector("#address")
     const utilities_select = document.querySelector("#utilities-select")
 
     const m_type = document.querySelector("#modal-type")
@@ -631,8 +636,14 @@
     }
 
     async function getHotelData() {
-      hotelData = await fetchData(dataURL)
-      localStorage.setItem("hotelData", JSON.stringify(hotelData))
+      let temp = localStorage.getItem("hotelData")
+      if (temp != null) {
+        hotelData = JSON.parse(temp)
+      }
+      else {
+        hotelData = await fetchData(dataURL)
+        localStorage.setItem("hotelData", JSON.stringify(hotelData))
+      }
     }
 
     function addRule() {
@@ -825,8 +836,11 @@
         }
       }
       else hotelData.room_list.push(temp)
-      console.log(hotelData)
-      localStorage.setItem("hotelData", JSON.stringify.hotelData )
+
+
+      localStorage.setItem("hotelData", JSON.stringify(hotelData))
+      location.reload()
+      alert("Updated hotel data successfully")
     }
 
 
@@ -845,33 +859,38 @@
       temp.name = name.value
       temp.phone = phone.value
       temp.owner= owner.value
+      temp.address = address.value
       temp.rules = getRule()
       temp.utilities = getUtility()
       temp.coordinate = {"lat":Number(lat.value),"long":Number(long.value)}
 
       hotelData = temp
       temp = JSON.stringify(temp)
-      localStorage.setItem("hotelData", JSON.stringify(temp))
+      localStorage.setItem("hotelData", temp)
+      location.reload()
+      alert("Updated hotel data successfully")
 
-      try {
-        let response = await fetch(`https://api.npoint.io/19d2682dd52d37f2f077`, {
-        method: 'POST',
-        headers: {"Content-Type":"application/json"},
-        body: temp
-        })
-        .then(response => {
-            console.log(response.status)
-            if(response.status==200 || response.status==202 ) {
-            alert("Updated movie successfully ")
-                location.reload();
-            }
-            else {
-              alert("Sorry, update movie failed")
-            }
-        })
-        } catch(error) {
-            console.log(error)
-        }
+
+
+      // try {
+      //   let response = await fetch(`https://api.npoint.io/19d2682dd52d37f2f077`, {
+      //   method: 'POST',
+      //   headers: {"Content-Type":"application/json"},
+      //   body: temp
+      //   })
+      //   .then(response => {
+      //       console.log(response.status)
+      //       if(response.status==200 || response.status==202 ) {
+      //       alert("Updated hotel data")
+      //           location.reload();
+      //       }
+      //       else {
+      //         alert("Update data failed")
+      //       }
+      //   })
+      //   } catch(error) {
+      //       console.log(error)
+      //   }
 
     }
 
@@ -913,6 +932,7 @@
       name.value = hotelData.name
       phone.value = hotelData.phone
       owner.value = hotelData.owner
+      address.value = hotelData.address
       lat.value =hotelData.coordinate.lat
       long.value =hotelData.coordinate.long
       displayRule()
@@ -949,8 +969,4 @@
   
 
   </script>
-
-<script type="text/javascript" src="signinState.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
 </body>

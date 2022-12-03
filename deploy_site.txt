@@ -1,0 +1,6 @@
+*** Deploy site:
+https://arenacamranh.netlify.app/
+
+*** Admin account:
+- account name: admin
+- password: 123
